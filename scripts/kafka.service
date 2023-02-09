@@ -1,0 +1,21 @@
+# sudo nano /etc/systemd/system/kafka.service 
+
+[Unit]
+Description=Apache Kafka Service
+Documentation=http://kafka.apache.org/documentation.html
+# Requires=zookeeper.service
+Requires=network.target
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/root/kafka_2.13-3.3.1/bin/kafka-server-start.sh /root/kafka_2.13-3.3.1/config/server.properties
+ExecStop=/root/kafka_2.13-3.3.1/kafka/bin/kafka-server-stop.sh
+
+[Install]
+WantedBy=multi-user.target
+
+# sudo systemctl daemon-reload 
+# sudo systemctl start kafka 
+# sudo systemctl status kafka 
+# sudo systemctl enable kafka 
